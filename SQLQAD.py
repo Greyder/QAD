@@ -1,9 +1,12 @@
 SELECT c.login,
-       COUNT(o.”inDelivery”)
+       o.”inDelivery”, #
+       COUNT(*) #
 FROM “Couriers” AS c
+WHERE  o.”inDelivery” = true #
 RIGHT JOIN “Orders” AS o ON o.”courierId” =c.id
 GROUP BY c.login
-HAVING COUNT(o.”inDelivery”) = true;
+HAVING COUNT(o.”inDelivery”); #
+
 
 SELECT track,
        finished,
